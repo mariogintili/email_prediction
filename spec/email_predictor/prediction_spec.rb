@@ -59,4 +59,15 @@ describe EmailPredictor::Prediction do
 
     it_behaves_like "predictable pattern"
   end
+
+  context "#first_initial_dot_last_initial" do
+
+    subject(:predict_email) do
+      Prediction.new(name, domain).first_initial_dot_last_initial
+    end
+
+    let(:predicted_address) { "p.w@alphasights.com" }
+
+    it_behaves_like "predictable pattern"
+  end
 end
