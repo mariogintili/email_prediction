@@ -26,4 +26,15 @@ describe EmailPredictor::Email do
       expect(subject.local).to eq "john.ferguson"
     end
   end
+
+  context "#hostname" do
+
+    it "keeps the domain" do
+      expect(subject.hostname).to include "alphasights"
+    end
+
+    it "doesnt include the top-level domain" do
+      expect(subject.hostname).not_to include ".com"
+    end
+  end
 end
