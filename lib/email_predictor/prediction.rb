@@ -3,9 +3,9 @@ module EmailPredictor
 
     attr_reader :name, :domain
 
-    def initialize(full_name, domain)
+    def initialize(full_name, full_domain)
       @name   = Name.new full_name
-      @domain = domain 
+      @domain = Domain.new full_domain
     end
 
     def first_name_dot_last_name
@@ -28,22 +28,22 @@ module EmailPredictor
 
     def address_for_first_name_dot_last_name
       local = name.to_a.join('.')
-      [local, domain].join("@")
+      [local, domain.full_domain].join("@")
     end
 
     def address_for_first_name_dot_last_initial
       local = [name.first, name.initials.last].join(".") 
-      [local, domain].join("@")
+      [local, domain.full_domain].join("@")
     end
 
     def address_for_first_initial_dot_last_name
       local = [name.initials.first, name.last].join(".")
-      [local, domain].join("@") 
+      [local, domain.full_domain].join("@") 
     end
 
     def address_for_first_initial_dot_last_initial
       local = name.initials.join(".")
-      [local, domain].join("@")
+      [local, domain.full_domain].join("@")
     end
   end
 end

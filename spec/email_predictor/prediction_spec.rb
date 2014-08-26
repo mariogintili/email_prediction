@@ -9,9 +9,10 @@ describe EmailPredictor::Prediction do
     let(:domain) { "alphasights.com" }
     let(:name)   { "Peter Wong" }
 
-    it "takes a name and a domain and sets it as an attribute" do
+    it "takes a name and a domain and sets them as attributes" do
       expect(Name).to receive(:new).with name
-      expect(subject.domain).to eq domain
+      expect(Domain).to receive(:new).with domain
+      subject
     end
   end
 
