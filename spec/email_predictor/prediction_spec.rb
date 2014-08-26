@@ -18,16 +18,38 @@ describe EmailPredictor::Prediction do
 
   context "#predicted_email" do
 
+    context "with no other entries in the dataset" do
+
+      let(:name)              { "Barack Obama" }
+      let(:domain)            { "whitehouse.gov" }           
+
+      it "raises a NotImplementedError" do
+        expect{subject.predicted_email}.to raise_error NotImplementedError
+      end
+    end
 
     context "with other entries in the dataset" do
 
-      let(:name)   { "Peter Wong" }
-      let(:domain) { "alphasights.com" }
+      context "with predominant known patterns" do
 
-      let(:predicted_address) { "peter.wong@alphasights.com" }
+        let(:name)              { "Peter Wong" }
+        let(:domain)            { "alphasights.com" }           
+        let(:predicted_address) { "peter.wong@alphasights.com" }
+        
+        it "creates an email, with the most likely local" do
+          expect(subject.predicted_email.address).to eq predicted_address
+        end
+      end
 
-      it "creates an email, with the most likely local" do
-        expect(subject.predicted_email.address).to eq predicted_address
+      context "with non-predominant known patterns" do
+
+        let(:name)              { "Craig Silverstein" }
+        let(:domain)            { "google.com" }           
+        let(:predicted_address) { "craig.s@google.com" }
+
+        it "returns an email with a non-predominant pattern" do
+          expect(subject.predicted_email.address).to eq predicted_address
+        end
       end
     end
   end

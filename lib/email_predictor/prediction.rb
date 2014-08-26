@@ -36,7 +36,9 @@ module EmailPredictor
     end
 
     def predicted_pattern
-      matched_patterns.max_by {|_, val| val }.first
+      if matched_patterns.any?
+        matched_patterns.max_by {|_, val| val }.first
+      end
     end
 
     def matched_locals
