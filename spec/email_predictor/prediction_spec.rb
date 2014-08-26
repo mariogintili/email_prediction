@@ -2,15 +2,16 @@ require "spec_helper"
 
 describe EmailPredictor::Prediction do
 
-  subject { Prediction.new(email) }
-
-  let(:address)  { "john.ferguson@alphasights.com" }
-  let(:email)    { Email.new(address) }
-
   context "#initialize" do
 
-    it "takes an email and sets it as an attribute" do
-      expect(subject.email).to eq email
+    subject { Prediction.new(name, domain) }
+
+    let(:domain) { "alphasights.com" }
+    let(:name)   { "Peter Wong" }
+
+    it "takes a name and a domain and sets it as an attribute" do
+      expect(subject.name).to eq name
+      expect(subject.domain).to eq domain
     end
   end
 end
