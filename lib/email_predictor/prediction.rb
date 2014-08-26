@@ -16,6 +16,10 @@ module EmailPredictor
       @first_name_dot_last_initial ||= Email.new address_for_first_name_dot_last_initial
     end
 
+    def first_initial_dot_last_name
+      @first_initial_dot_last_name ||= Email.new address_for_first_initial_dot_last_name
+    end
+
     private
 
     def address_for_first_name_dot_last_name
@@ -26,6 +30,13 @@ module EmailPredictor
       index_of_initial = name.rindex(' ') + 1
       local            = name.downcase[0..index_of_initial].gsub(' ', '.')
       [local, domain].join("@")
+    end
+
+    def address_for_first_initial_dot_last_name
+      initial   = name.downcase.chars.first
+      last_name = name.downcase.split(" ").last 
+      local     = [initial, last_name].join(".")
+      [local, domain].join("@") 
     end
   end
 end

@@ -15,29 +15,48 @@ describe EmailPredictor::Prediction do
     end
   end
 
-  context "Predicting email, potential patterns" do
 
-    let(:domain) { "alphasights.com" }
-    let(:name)   { "Peter Wong" }
+  shared_examples "predictable pattern" do
 
-    context "#first_name_dot_last_name" do
+    it "creates an email with the expected address" do
+      expect(Email).to receive(:new).with(predicted_address)
+      predict_email
+    end
+  end
 
-      let(:predicted_address) { "peter.wong@alphasights.com" }
+  let(:domain) { "alphasights.com" }
+  let(:name)   { "Peter Wong" }
 
-      it "creates an email with the target's full name" do
-        expect(Email).to receive(:new).with(predicted_address)
-        subject.first_name_dot_last_name
-      end
+  context "#first_name_dot_last_name" do
+
+    subject(:predict_email) do
+      Prediction.new(name, domain).first_name_dot_last_name
     end
 
-    context "#first_name_dot_last_initial" do
+    let(:predicted_address) { "peter.wong@alphasights.com" }
 
-      let(:predicted_address) { "peter.w@alphasights.com" }
+    it_behaves_like "predictable pattern"
+  end
 
-      it "#first_name_dot_last_initial" do
-        expect(Email).to receive(:new).with(predicted_address)
-        subject.first_name_dot_last_initial
-      end
+  context "#first_name_dot_last_initial" do
+
+    subject(:predict_email) do
+      Prediction.new(name, domain).first_name_dot_last_initial
     end
+
+    let(:predicted_address) { "peter.w@alphasights.com" }
+
+    it_behaves_like "predictable pattern"
+  end
+
+  context "#first_initial_dot_last_name" do
+
+    subject(:predict_email) do
+      Prediction.new(name, domain).first_initial_dot_last_name
+    end
+
+    let(:predicted_address) { "p.wong@alphasights.com" }
+
+    it_behaves_like "predictable pattern"
   end
 end
