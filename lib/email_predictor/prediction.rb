@@ -9,14 +9,23 @@ module EmailPredictor
     end
 
     def first_name_dot_last_name
-      address = [name.downcase.gsub(' ', '.'), domain].join("@")
-      @first_name_dot_last_name ||= Email.new address
+      @first_name_dot_last_name ||= Email.new address_for_first_name_dot_last_name
     end
 
     def first_name_dot_last_initial
-      index   = name.rindex(' ') + 1
-      address = [name[0..index].downcase.gsub(' ', '.'), domain].join("@")
-      @first_name_dot_last_initial ||= Email.new address
+      @first_name_dot_last_initial ||= Email.new address_for_first_name_dot_last_initial
+    end
+
+    private
+
+    def address_for_first_name_dot_last_name
+      [name.downcase.gsub(' ', '.'), domain].join("@")
+    end
+
+    def address_for_first_name_dot_last_initial
+      index_of_initial = name.rindex(' ') + 1
+      local            = name.downcase[0..index_of_initial].gsub(' ', '.')
+      [local, domain].join("@")
     end
   end
 end
