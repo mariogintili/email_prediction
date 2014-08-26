@@ -37,4 +37,46 @@ describe EmailPredictor::Email do
       expect(subject.hostname).not_to include ".com"
     end
   end
+
+  context "#pattern" do
+
+    shared_examples "predictable pattern" do
+
+      it "returns a symbol corresponding to its pattern" do
+        expect(subject.pattern).to eq pattern
+      end
+    end
+
+    context "first_name_dot_last_name" do
+
+      let(:address) { "john.ferguson@alphasights.com" }
+      let(:pattern) { :first_name_dot_last_name }
+      
+      it_behaves_like "predictable pattern"
+    end
+
+    context "first_name_dot_last_initial" do
+
+      let(:address) { "john.f@alphasights.com" }
+      let(:pattern) { :first_name_dot_last_initial }
+
+      it_behaves_like "predictable pattern"
+    end
+
+    context "first_initial_dot_last_name" do
+
+      let(:address) { "j.ferguson@alphasights.com" }
+      let(:pattern) { :first_initial_dot_last_name }
+
+      it_behaves_like "predictable pattern"
+    end
+
+    context "first_initial_dot_last_initial" do
+
+      let(:address) { "j.f@alphasights.com" }
+      let(:pattern) { :first_initial_dot_last_initial }
+
+      it_behaves_like "predictable pattern"
+    end
+  end
 end
