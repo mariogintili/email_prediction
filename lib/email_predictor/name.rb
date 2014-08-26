@@ -20,7 +20,7 @@ module EmailPredictor
     end
 
     def to_a
-      [first, last]
+      full_name.downcase.split(" ")
     end
 
     private

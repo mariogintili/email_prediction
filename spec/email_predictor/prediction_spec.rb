@@ -10,7 +10,7 @@ describe EmailPredictor::Prediction do
     let(:name)   { "Peter Wong" }
 
     it "takes a name and a domain and sets it as an attribute" do
-      expect(subject.name).to eq name
+      expect(Name).to receive(:new).with name
       expect(subject.domain).to eq domain
     end
   end
