@@ -19,8 +19,11 @@ module EmailPredictor
       @last ||= extract_last
     end
 
-    private
+    def to_a
+      [first, last]
+    end
 
+    private
 
     def extract_initials 
       full_name.downcase.split(" ").each_with_object([]) do |word, array|

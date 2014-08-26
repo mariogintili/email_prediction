@@ -35,4 +35,11 @@ describe EmailPredictor::Name do
       expect(subject.last).to eq "wong"
     end
   end
+
+  context "#to_a" do
+
+    it "returns an array containg the first and last name downcased" do
+      expect(subject.to_a).to eq ["pete", "wong"]
+    end
+  end
 end
