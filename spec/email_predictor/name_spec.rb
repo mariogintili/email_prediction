@@ -12,4 +12,13 @@ describe EmailPredictor::Name do
       expect(subject.full_name).to eq full_name
     end
   end
+
+  context "#initials" do
+
+    let(:initials) { ["p", "w"] }
+
+    it "returns an array with the initials" do
+      expect(subject.initials).to match_array initials
+    end
+  end
 end
