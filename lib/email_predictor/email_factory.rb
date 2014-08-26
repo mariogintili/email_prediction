@@ -53,23 +53,3 @@ module EmailPredictor
     end
   end
 end
-
-
-
-
-
-    # def first_name_dot_last_name
-    #   @first_name_dot_last_name ||= Email.new address_for_first_name_dot_last_name
-    # end
-
-    # def first_name_dot_last_initial
-    #   @first_name_dot_last_initial ||= Email.new address_for_first_name_dot_last_initial
-    # end
-
-    # def first_initial_dot_last_name
-    #   @first_initial_dot_last_name ||= Email.new address_for_first_initial_dot_last_name
-    # end
-
-    # def first_initial_dot_last_initial
-    #   @first_initial_dot_last_initial ||= Email.new address_for_first_initial_dot_last_initial
-    # end

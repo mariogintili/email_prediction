@@ -8,42 +8,39 @@ module EmailPredictor
       @domain = Domain.new full_domain
     end
 
-    def first_name_dot_last_name
-      @first_name_dot_last_name ||= Email.new address_for_first_name_dot_last_name
-    end
-
-    def first_name_dot_last_initial
-      @first_name_dot_last_initial ||= Email.new address_for_first_name_dot_last_initial
-    end
-
-    def first_initial_dot_last_name
-      @first_initial_dot_last_name ||= Email.new address_for_first_initial_dot_last_name
-    end
-
-    def first_initial_dot_last_initial
-      @first_initial_dot_last_initial ||= Email.new address_for_first_initial_dot_last_initial
+    def predicted_email
+      email_factory.build(name: name, domain: domain, pattern: predicted_pattern)
     end
 
     private
 
-    def address_for_first_name_dot_last_name
-      local = name.to_a.join('.')
-      [local, domain.full_domain].join("@")
+    def dataset
+      @dataset ||= DataSet.new
     end
 
-    def address_for_first_name_dot_last_initial
-      local = [name.first, name.initials.last].join(".") 
-      [local, domain.full_domain].join("@")
+    def email_factory
+      @email_factory ||= EmailFactory.new 
     end
 
-    def address_for_first_initial_dot_last_name
-      local = [name.initials.first, name.last].join(".")
-      [local, domain.full_domain].join("@") 
+    def matched_emails
+      dataset.emails.select do |email|
+        domain.full_domain == email.domain
+      end
     end
 
-    def address_for_first_initial_dot_last_initial
-      local = name.initials.join(".")
-      [local, domain.full_domain].join("@")
+    def matched_patterns
+      all_patterns = matched_emails.group_by(&:pattern)
+      all_patterns.each do |key, value|
+        all_patterns[key] = value.length 
+      end
+    end
+
+    def predicted_pattern
+      matched_patterns.max_by {|_, val| val }.first
+    end
+
+    def matched_locals
+      matched_emails.map(&:local)
     end
   end
 end

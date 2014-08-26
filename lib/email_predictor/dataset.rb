@@ -3,7 +3,7 @@ module EmailPredictor
 
     attr_reader :data
 
-    def initialize(data)
+    def initialize(data = nil)
       @data = data || DATA
     end
 
