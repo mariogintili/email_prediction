@@ -21,4 +21,18 @@ describe EmailPredictor::Name do
       expect(subject.initials).to match_array initials
     end
   end
+
+  context "#first" do
+
+    it "returns the first name downcased" do
+      expect(subject.first).to eq "pete"
+    end
+  end
+
+  context "#last" do
+
+    it "returns the last name, downcased" do
+      expect(subject.last).to eq "wong"
+    end
+  end
 end
