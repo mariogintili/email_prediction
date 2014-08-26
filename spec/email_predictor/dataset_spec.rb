@@ -30,4 +30,14 @@ describe EmailPredictor::DataSet do
       expect(emails).to include john_email
     end
   end
+
+  context "#names" do
+
+    let(:all_names) { data.keys }
+
+    it "maps all the keys to names" do
+      names = subject.names.map(&:full_name)
+      expect(names).to match_array all_names
+    end
+  end
 end
