@@ -14,7 +14,7 @@ module EmailPredictor
 
     def create_email
       address = address_for pattern
-      Email.new(address)
+      EmailPredictor::PredictedEmail.new(address: address, pattern: pattern)
     end
 
     def address_for pattern
