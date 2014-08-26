@@ -8,7 +8,7 @@ module EmailPredictor
     end
 
     def emails
-      data.values.map { |address| Email.new(address) }
+      data.values.map { |address| Email.new(address: address) }
     end
 
     def names

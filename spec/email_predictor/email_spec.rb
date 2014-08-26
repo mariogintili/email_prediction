@@ -3,8 +3,9 @@ require "spec_helper"
 describe EmailPredictor::Email do
 
   let(:address) { "john.ferguson@alphasights.com" }
+  let(:args)    { {address: address} }
   
-  subject { Email.new(address) }
+  subject { Email.new(args) }
   
   context "#initialize" do
 

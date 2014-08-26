@@ -24,7 +24,7 @@ describe EmailPredictor::EmailFactory do
     shared_examples "predictable pattern" do
 
       it "creates an email from the given pattern" do
-        expect(Email).to receive(:new).with(predicted_address)
+        expect(Email).to receive(:new).with(predicted_options)
         build_email
       end
     end
@@ -34,6 +34,7 @@ describe EmailPredictor::EmailFactory do
 
       let(:predicted_address) { "peter.wong@alphasights.com" }
       let(:pattern)           { :first_name_dot_last_name }
+      let(:predicted_options) { { address: predicted_address, pattern: pattern } }
 
       it_behaves_like "predictable pattern"
     end
@@ -42,6 +43,7 @@ describe EmailPredictor::EmailFactory do
 
       let(:predicted_address) { "peter.w@alphasights.com"}
       let(:pattern)           { :first_name_dot_last_initial }
+      let(:predicted_options) { { address: predicted_address, pattern: pattern } }
 
       it_behaves_like "predictable pattern"
     end
@@ -50,6 +52,7 @@ describe EmailPredictor::EmailFactory do
 
       let(:predicted_address) { "p.wong@alphasights.com" }
       let(:pattern)           { :first_initial_dot_last_name }
+      let(:predicted_options) { { address: predicted_address, pattern: pattern } }
 
       it_behaves_like "predictable pattern"
     end
@@ -58,6 +61,7 @@ describe EmailPredictor::EmailFactory do
 
       let(:predicted_address) { "p.w@alphasights.com" }
       let(:pattern)           { :first_initial_dot_last_initial }
+      let(:predicted_options) { { address: predicted_address, pattern: pattern } }
 
       it_behaves_like "predictable pattern"
     end
