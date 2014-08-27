@@ -4,7 +4,7 @@ Given these 3 pieces of information:
 
 - An advisor's name
 - The domain name of the company he works for
-- A set of name's and emails of ther advisors that work for the same company
+- A set of name's and emails of other advisors that work for the same company
 
 For this scenario there are 4 potential patterns
 
@@ -13,7 +13,7 @@ For this scenario there are 4 potential patterns
 3. `first_initial_dot_last_name`: "j.ferguson@alphasights.com"
 4. `first_initial_dot_last_initial`: "j.f@alphasights.com"
 
-And given this data:
+And given a sample dataset:
 
 ```ruby
 {
