@@ -32,24 +32,40 @@ module EmailPredictor
       end
     end
 
+    def join_domain(local)
+      [local, domain.full_domain].join('@')
+    end
+
     def address_for_first_name_dot_last_name
-      local = name.to_a.join('.')
-      [local, domain.full_domain].join("@")
+      join_domain(first_name_dot_last_name)
+    end
+
+    def first_name_dot_last_name
+      name.to_a.join('.')
+    end
+
+    def first_name_dot_last_initial
+      [name.first, name.initials.last].join(".") 
     end
 
     def address_for_first_name_dot_last_initial
-      local = [name.first, name.initials.last].join(".") 
-      [local, domain.full_domain].join("@")
+      join_domain(first_name_dot_last_initial)
+    end
+
+    def first_initial_dot_last_name
+      [name.initials.first, name.last].join(".")
     end
 
     def address_for_first_initial_dot_last_name
-      local = [name.initials.first, name.last].join(".")
-      [local, domain.full_domain].join("@") 
+      join_domain(first_initial_dot_last_name)
+    end
+
+    def first_initial_dot_last_initial
+      name.initials.join(".")
     end
 
     def address_for_first_initial_dot_last_initial
-      local = name.initials.join(".")
-      [local, domain.full_domain].join("@")
+      join_domain(first_initial_dot_last_initial)
     end
   end
 end

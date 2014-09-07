@@ -9,7 +9,7 @@ module EmailPredictor
     end
 
     def predicted_email
-      email_factory.build(name: name, domain: domain, pattern: predicted_pattern)
+      @predicted_email ||= email_factory.build(name: name, domain: domain, pattern: predicted_pattern)
     end
 
     private

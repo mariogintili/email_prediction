@@ -8,35 +8,19 @@ module EmailPredictor
     end
 
     def initials
-      @initials ||= extract_initials
+      @initials ||= full_name.downcase.split(" ").map { |word| word[0] }
     end
 
     def first
-      @first ||= extract_first
+      @first ||= full_name.downcase.split(" ").first
     end
 
     def last
-      @last ||= extract_last
+      @last ||= full_name.downcase.split(" ").last
     end
 
     def to_a
       full_name.downcase.split(" ")
-    end
-
-    private
-
-    def extract_initials 
-      full_name.downcase.split(" ").each_with_object([]) do |word, array|
-        array << word[0]
-      end
-    end
-
-    def extract_last
-      full_name.downcase.split(" ").last
-    end
-
-    def extract_first
-      full_name.downcase.split(" ").first
     end
   end
 end

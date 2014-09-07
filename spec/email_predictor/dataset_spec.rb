@@ -25,9 +25,9 @@ describe EmailPredictor::DataSet do
     let(:john_email)  { data["John Ferguson"] }
 
     it "maps all values to emails" do
-      emails = subject.emails.map(&:address)
-      expect(emails).to include linda_email
-      expect(emails).to include john_email
+      addresses = subject.emails.map(&:address)
+      expect(addresses).to include linda_email
+      expect(addresses).to include john_email
     end
   end
 
