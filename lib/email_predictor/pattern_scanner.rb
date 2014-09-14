@@ -19,7 +19,7 @@ module EmailPredictor
       when first_initial_dot_last_initial?
         :first_initial_dot_last_initial
       else
-        :unknown
+        nil
       end 
     end
 
@@ -46,11 +46,11 @@ module EmailPredictor
     end
 
     def first_is_name?
-      email.local.split('.').first == name.first
+      email.first_local == name.first
     end
 
     def first_is_initial?
-      email.local.split('.').first == name.initials.first
+      email.first_local == name.initials.first
     end
 
     def last_is_name?

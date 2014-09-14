@@ -23,8 +23,8 @@ describe EmailPredictor::Prediction do
       let(:name)              { "Barack Obama" }
       let(:domain)            { "whitehouse.gov" }           
 
-      it "raises a NotImplementedError" do
-        expect{subject.predicted_email}.to raise_error NotImplementedError
+      it "returns nil" do
+        expect(subject.predicted_email.address).to eq nil
       end
     end
 

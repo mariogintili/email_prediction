@@ -16,6 +16,10 @@ module EmailPredictor
       @local ||= address.split('@').first
     end
 
+    def first_local
+      local.split('.').first
+    end
+
     def hostname
       @hostname ||= domain.split('.').first
     end

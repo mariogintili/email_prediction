@@ -10,8 +10,8 @@ describe EmailPredictor::PatternScanner do
 
     context 'with an unpredicted pattern' do
 
-      it "returns :unknown" do
-        expect(patttern_scanner.predicted_pattern).to eq :unknown
+      it "returns nil" do
+        expect(patttern_scanner.predicted_pattern).to eq nil
       end
     end
 

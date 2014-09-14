@@ -17,19 +17,17 @@ module EmailPredictor
       EmailPredictor::PredictedEmail.new(address: address, pattern: pattern)
     end
 
+    def pattern_dictionary
+      {
+        :first_name_dot_last_name        => address_for_first_name_dot_last_name,
+        :first_name_dot_last_initial     => address_for_first_name_dot_last_initial,
+        :first_initial_dot_last_name     => address_for_first_initial_dot_last_name,
+        :first_initial_dot_last_initial  => address_for_first_initial_dot_last_initial
+      }
+    end
+
     def address_for pattern
-      case pattern
-        when :first_name_dot_last_name
-          address_for_first_name_dot_last_name
-        when :first_name_dot_last_initial
-          address_for_first_name_dot_last_initial
-        when :first_initial_dot_last_name
-          address_for_first_initial_dot_last_name
-        when :first_initial_dot_last_initial
-          address_for_first_initial_dot_last_initial
-        else
-          raise NotImplementedError 
-      end
+      pattern_dictionary.fetch pattern, nil
     end
 
     def join_domain(local)
