@@ -18,8 +18,6 @@ module EmailPredictor
         :first_initial_dot_last_name
       when first_initial_dot_last_initial?
         :first_initial_dot_last_initial
-      else
-        nil
       end 
     end
 
